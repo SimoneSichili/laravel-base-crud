@@ -9,6 +9,8 @@
     <title>Laravel CRUD</title>
 </head>
 <body>
-    <h1><a href="{{ route("beers.index") }}">Vai alle mie birre</a></h1>
+    <div class="container">
+        <h1 class="mt-5 text-center"><a href="{{ route("beers.index") }}">Vai alle mie birre</a></h1>
+    </div>
 </body>
 </html>

@@ -17,7 +17,7 @@ class BeerController extends Controller
 
         $beers = Beer::all();
         // dd($beers);
-        return view("beers", compact("beers"));
+        return view("beers.index", compact("beers"));
     }
 
     /**
@@ -49,7 +49,9 @@ class BeerController extends Controller
      */
     public function show($id)
     {
-        //
+        $beer = Beer::find($id);
+        // dd($beer);
+        return view("beers.show", compact("beer"));
     }
 
     /**

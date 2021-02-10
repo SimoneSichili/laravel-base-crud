@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Le mie birre</h1>
-        <table class="table">
-            <thead>
+        <h1 class="mt-5 mb-3">Le mie birre</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Marca</th>
@@ -35,7 +35,7 @@
                         <td>{{ $beer->degrees }}</td>
                         <td>{{ $beer->created_at }}</td>
                         <td>{{ $beer->updated_at }}</td>
-                        <td><a href="">MOSTRA</a></td>
+                        <td><a href="{{ route("beers.show", $beer->id ) }}">MOSTRA</a></td>
                     </tr>
                 @endforeach
             </tbody>
