@@ -7,6 +7,13 @@ use App\Beer;
 
 class BeerController extends Controller
 {
+    private $bookValidation = [
+        'brand' => 'required|max:30',
+        'type' => 'required|max:20',
+        'price' => 'required|numeric',
+        'cl' => 'required|numeric',
+        'degrees' => 'required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -41,15 +48,7 @@ class BeerController extends Controller
         $data = $request->all();
 
         //validazione campi
-        $request->validate(
-            [
-                'brand' => 'required|max:30',
-                'type' => 'required|max:20',
-                'price' => 'required|numeric',
-                'cl' => 'required|numeric',
-                'degrees' => 'required|numeric',
-            ]
-        );
+        $request->validate($this->bookValidation);
         
         $beer = new Beer();
 
@@ -90,9 +89,9 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Beer $beer)
     {
-        //
+        return view("beers.edit", compact("beer"));
     }
 
     /**
@@ -102,9 +101,13 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $data= $request->all();
+        $request->validate($this->bookValidation);
+
+        $beer->update($data);
+        return redirect()->route('beers.index')->with("successAlert", "Birra n.{$beer->id} {$beer->brand} aggiornata correttamente");
     }
 
     /**
@@ -113,8 +116,9 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Beer $beer)
     {
-        //
+        $beer->delete();
+        return redirect()->route('beers.index')->with("warningAlert", "Birra n.{$beer->id} {$beer->brand} eliminata correttamente");
     }
 }

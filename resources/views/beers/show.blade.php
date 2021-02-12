@@ -29,6 +29,7 @@
         </tbody>
     </table>
     <div class="text-right">
+        <a href="{{ route("beers.edit", $beer->id ) }}" class="btn btn-lg btn-primary">Modifica</a>
         <a href="{{ route("beers.index") }}" class="btn btn-lg btn-dark">Indietro</a>
     </div>
 @endsection

@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-    <form action="{{ route("beers.store") }}" method="POST">
+       <form action="{{ route("beers.update", $beer) }}" method="POST">
         @csrf
-        @method("POST")
+        @method("PUT")
         <div class="form-group">
             <label for="brand">Marca</label>
-            <input type="text" class="form-control" id="brand" name="brand" placeholder="Inserisci la marca" value="{{ old('brand') }}">
+            <input type="text" class="form-control" id="brand" name="brand" placeholder="Inserisci la marca" value="{{ $beer->brand }}">
             <small id="brand" class="form-text text-muted">È un campo testuale che deve avere massimo 30 caratteri</small>
         </div>
         @error('brand')
@@ -15,7 +15,7 @@
 
         <div class="form-group">
             <label for="type">Tipo</label>
-            <input type="text" class="form-control" id="type" name="type" placeholder="Inserisci il tipo"  value="{{ old('type') }}">
+            <input type="text" class="form-control" id="type" name="type" placeholder="Inserisci il tipo"  value="{{ $beer->type }}">
             <small id="type" class="form-text text-muted">È un campo testuale che deve avere massimo 20 caratteri</small>
         </div>
         @error('type')
@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="price">Prezzo</label>
-            <input type="text" class="form-control" id="price" name="price"placeholder="Inserisci il prezzo"  value="{{ old('price') }}">
+            <input type="text" class="form-control" id="price" name="price"placeholder="Inserisci il prezzo"  value="{{ $beer->price }}">
             <small id="price" class="form-text text-muted">È un campo numerico di massimo 6 cifre con la virgola</small>
         </div>
         @error('price')
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <label for="cl">Centilitri</label>
-            <input type="text" class="form-control" id="cl" name="cl"placeholder="Inserisci i cl"  value="{{ old('cl') }}">
+            <input type="text" class="form-control" id="cl" name="cl"placeholder="Inserisci i cl"  value="{{ $beer->cl }}">
             <small id="cl" class="form-text text-muted">È un campo numerico di massimo 7 cifre con la virgola</small>
         </div>
         @error('cl')
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="degrees">Gradazione alcolica</label>
-            <input type="text" class="form-control" id="degrees" name="degrees" placeholder="Inserisci la gradazione"  value="{{ old('degrees') }}">
+            <input type="text" class="form-control" id="degrees" name="degrees" placeholder="Inserisci la gradazione"  value="{{ $beer->degrees }}">
             <small id="degrees" class="form-text text-muted">È un campo numerico di massimo 4 cifre con la virgola</small>
         </div>
         @error('degrees')
